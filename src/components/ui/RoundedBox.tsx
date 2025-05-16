@@ -47,7 +47,7 @@ export { RoundedBoxGeometry };
 // Define the type extensions for TypeScript
 declare global {
   namespace THREE {
-    interface RoundedBoxGeometryClass extends THREE.BufferGeometry {
+    interface RoundedBoxGeometryClass {
       new (width?: number, height?: number, depth?: number, segments?: number, radius?: number): THREE.BufferGeometry;
     }
   }
