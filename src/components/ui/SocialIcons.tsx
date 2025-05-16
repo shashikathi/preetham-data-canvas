@@ -1,5 +1,5 @@
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useTexture } from "@react-three/drei";
@@ -16,7 +16,7 @@ interface SocialIconProps {
 
 function SocialIcon({ texture, position, url }: SocialIconProps) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const [hovered, setHovered] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
   
   useFrame(() => {
     if (meshRef.current) {

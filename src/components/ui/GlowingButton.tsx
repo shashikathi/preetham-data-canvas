@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
+import { RoundedBoxGeometry } from "./RoundedBox";
 
 interface GlowingButtonProps {
   position?: [number, number, number];
@@ -51,7 +52,7 @@ export default function GlowingButton({
     >
       {/* Button mesh */}
       <mesh ref={meshRef}>
-        <roundedBoxGeometry args={[2.5, 0.8, 0.2, 4, 0.1]} />
+        <boxGeometry args={[2.5, 0.8, 0.2]} />
         <meshPhysicalMaterial
           color={hovered ? "#33c3f0" : "#1e88e5"}
           roughness={0.3}
