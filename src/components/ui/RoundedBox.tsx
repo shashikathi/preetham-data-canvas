@@ -2,12 +2,18 @@
 import * as THREE from 'three';
 
 // Create a custom RoundedBoxGeometry class
-class RoundedBoxGeometry extends THREE.BoxGeometry {
+class RoundedBoxGeometry extends THREE.BufferGeometry {
   constructor(width = 1, height = 1, depth = 1, segments = 2, radius = 0.1) {
-    super(width, height, depth, segments, segments, segments);
+    super();
+    
+    // Create a standard box geometry to start with
+    const boxGeometry = new THREE.BoxGeometry(width, height, depth, segments, segments, segments);
+    
+    // Copy attributes from the box geometry
+    this.copy(boxGeometry);
     
     // Process each vertex
-    const position = this.attributes.position;
+    const position = this.getAttribute('position');
     const array = position.array;
     
     // Use radius to adjust corners
@@ -38,14 +44,14 @@ class RoundedBoxGeometry extends THREE.BoxGeometry {
 // Export the geometry for use in components
 export { RoundedBoxGeometry };
 
-// Extend THREE types
+// Define the type extensions for TypeScript
 declare global {
   namespace THREE {
-    class RoundedBoxGeometry extends THREE.BoxGeometry {
-      constructor(width?: number, height?: number, depth?: number, segments?: number, radius?: number);
+    interface RoundedBoxGeometryClass extends THREE.BufferGeometry {
+      new (width?: number, height?: number, depth?: number, segments?: number, radius?: number): THREE.BufferGeometry;
     }
   }
 }
 
-// Add the geometry to THREE namespace
-THREE.RoundedBoxGeometry = RoundedBoxGeometry as any;
+// Add the RoundedBoxGeometry to THREE namespace in a type-safe way
+(THREE as any).RoundedBoxGeometry = RoundedBoxGeometry;
