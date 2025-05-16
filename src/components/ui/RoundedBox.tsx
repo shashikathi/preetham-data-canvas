@@ -48,7 +48,7 @@ export { RoundedBoxGeometry };
 declare global {
   namespace THREE {
     interface RoundedBoxGeometryClass {
-      new (width?: number, height?: number, depth?: number, segments?: number, radius?: number): THREE.BufferGeometry;
+      new (width?: number, height?: number, depth?: number, segments?: number, radius?: number): typeof THREE.BufferGeometry;
     }
   }
 }
