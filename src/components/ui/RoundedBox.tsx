@@ -35,9 +35,6 @@ class RoundedBoxGeometry extends THREE.BoxGeometry {
   }
 }
 
-// Add the geometry to THREE
-THREE.RoundedBoxGeometry = RoundedBoxGeometry;
-
 // Export the geometry for use in components
 export { RoundedBoxGeometry };
 
@@ -49,3 +46,6 @@ declare global {
     }
   }
 }
+
+// Add the geometry to THREE namespace
+THREE.RoundedBoxGeometry = RoundedBoxGeometry as any;
